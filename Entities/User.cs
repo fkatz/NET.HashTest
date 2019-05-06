@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -15,6 +16,18 @@ namespace Entities
         }
         public AccessPermissions Permissions { get; set; }
 
+        public string Password
+        {
+            get
+            {
+                return Convert.ToBase64String(passwordHash);
+            }
+            set
+            {
+                SetPassword(value);
+            }
+        }
+
         public string Fullname
         {
             get => Name + " " + Surname;
@@ -29,16 +42,20 @@ namespace Entities
         {
             if (AuthPassword(oldPassword))
             {
-                ResetSalt();
-                passwordHash = GetHash(newPassword);
+                SetPassword(newPassword);
                 return true;
             }
             else return false;
         }
+        public void SetPassword(string newPassword)
+        {
+                ResetSalt();
+                passwordHash = GetHash(newPassword);
+        }
         private static RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
         public string Username { get; set; }
         private byte[] passwordHash;
-        private string passwordSalt;
+        private byte[] passwordSalt;
         public string Email { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -50,19 +67,16 @@ namespace Entities
 
         private byte[] GetHash(string password)
         {
-            return SHA256.Create().ComputeHash(Encoding.ASCII.GetBytes(password + this.passwordSalt));
+            byte[] passBytes = Encoding.ASCII.GetBytes(password);
+            byte[] fullBytes = new byte[passBytes.Length + passwordSalt.Length];
+            passBytes.CopyTo(fullBytes, 0);
+            passwordSalt.CopyTo(fullBytes, passBytes.Length);
+            return SHA256.Create().ComputeHash(fullBytes);
         }
         private void ResetSalt()
         {
-            byte[] saltBytes = new byte[32];
-            rngCsp.GetBytes(saltBytes);
-            for (int i = 0; i < saltBytes.Length; i++)
-            {
-                double fraction = (double)saltBytes[i] / 256;
-                saltBytes[i] = (byte)(fraction * 93);
-                saltBytes[i] += 33;
-            }
-            passwordSalt = Encoding.ASCII.GetString(saltBytes);
+            passwordSalt = new byte[32];
+            rngCsp.GetBytes(passwordSalt);
         }
     }
 }

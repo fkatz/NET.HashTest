@@ -20,6 +20,12 @@ namespace Login
                 Name = "Federico",
                 Surname = "Katzaroff"
             });
+            usersController.AddUser(new User("pepe", "pepe")
+            {
+                Email = "pepe@pepe.pep",
+                Name = "Pepe",
+                Surname = "Pepoff"
+            });
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             LoginForm loginForm = new LoginForm(usersController);
