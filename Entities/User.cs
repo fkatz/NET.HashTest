@@ -7,7 +7,10 @@ namespace Entities
 {
     public class User
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> ee76106c4b504ac171e0a78d396440fcffe81322
         public string Password
         {
             get

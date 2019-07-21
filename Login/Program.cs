@@ -14,17 +14,23 @@ namespace Login
         static void Main()
         {
             UsersController usersController = new UsersController();
-            usersController.AddUser(new User("fkatz", "fede")
+            usersController.AddUser(new User("fkatz", "fedefede")
             {
                 Email = "fkatzaroff@gmail.com",
                 Name = "Federico",
                 Surname = "Katzaroff"
             });
-            usersController.AddUser(new User("pepe", "pepe")
+            usersController.AddUser(new User("pepe", "44411777")
             {
-                Email = "pepe@pepe.pep",
+                Email = "pepe@elpepe.com",
                 Name = "Pepe",
-                Surname = "Pepoff"
+                Surname = "Rodriguez"
+            });
+            usersController.AddUser(new User("toto", "toto99")
+            {
+                Email = "toto@totito.net",
+                Name = "Toto",
+                Surname = "Gonzalez"
             });
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -38,7 +38,11 @@
             // btnSignout
             // 
             this.btnSignout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+<<<<<<< HEAD
             this.btnSignout.Location = new System.Drawing.Point(325, 216);
+=======
+            this.btnSignout.Location = new System.Drawing.Point(325, 223);
+>>>>>>> ee76106c4b504ac171e0a78d396440fcffe81322
             this.btnSignout.Name = "btnSignout";
             this.btnSignout.Size = new System.Drawing.Size(70, 23);
             this.btnSignout.TabIndex = 0;
@@ -60,7 +64,11 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+<<<<<<< HEAD
             this.tableLayoutPanel1.Size = new System.Drawing.Size(403, 247);
+=======
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(403, 254);
+>>>>>>> ee76106c4b504ac171e0a78d396440fcffe81322
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // grdUsers
@@ -80,7 +88,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(403, 247);
+=======
+            this.ClientSize = new System.Drawing.Size(403, 254);
+>>>>>>> ee76106c4b504ac171e0a78d396440fcffe81322
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ListForm";
             this.Text = "List";
