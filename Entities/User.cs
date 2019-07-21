@@ -7,15 +7,6 @@ namespace Entities
 {
     public class User
     {
-        public enum AccessPermissions
-        {
-            RESTRICTED = 0b0,
-            CAN_LIST = 0b10,
-            CAN_MODIFY = 0b100,
-            CAN_SET_PERMISSIONS = 0b1000
-        }
-        public AccessPermissions Permissions { get; set; }
-
         public string Password
         {
             get
