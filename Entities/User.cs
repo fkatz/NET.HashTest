@@ -16,7 +16,7 @@ namespace Entities
             }
             set
             {
-                SetPassword(value);
+                passwordHash = GetHash(value);
             }
         }
 
@@ -27,24 +27,8 @@ namespace Entities
         public User(string username, string password)
         {
             Username = username;
-            ResetSalt();
             passwordHash = GetHash(password);
         }
-        public bool ChangePassword(string oldPassword, string newPassword)
-        {
-            if (AuthPassword(oldPassword))
-            {
-                SetPassword(newPassword);
-                return true;
-            }
-            else return false;
-        }
-        public void SetPassword(string newPassword)
-        {
-                ResetSalt();
-                passwordHash = GetHash(newPassword);
-        }
-        private static RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
         public string Username { get; set; }
         private byte[] passwordHash;
         private byte[] passwordSalt;
@@ -60,15 +44,7 @@ namespace Entities
         private byte[] GetHash(string password)
         {
             byte[] passBytes = Encoding.ASCII.GetBytes(password);
-            byte[] fullBytes = new byte[passBytes.Length + passwordSalt.Length];
-            passBytes.CopyTo(fullBytes, 0);
-            passwordSalt.CopyTo(fullBytes, passBytes.Length);
-            return SHA256.Create().ComputeHash(fullBytes);
-        }
-        private void ResetSalt()
-        {
-            passwordSalt = new byte[32];
-            rngCsp.GetBytes(passwordSalt);
+            return SHA256.Create().ComputeHash(passBytes);
         }
     }
 }
