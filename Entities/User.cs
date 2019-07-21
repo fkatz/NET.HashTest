@@ -11,7 +11,10 @@ namespace Entities
         {
             get
             {
-                return Convert.ToBase64String(passwordHash);
+                return string.Join("",
+                passwordHash.Select(
+                bin => bin.ToString("X2")
+                  ).ToArray());
             }
             set
             {
